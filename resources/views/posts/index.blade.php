@@ -1,26 +1,11 @@
 @extends('layouts.default')
 
 @section('title')
-Blog
-@stop
-
-@section('top')
-<div class="page-header">
-<h1>Blog</h1>
-</div>
+Apollo
 @stop
 
 @section('content')
 <div class="row">
-    <div class="col-xs-8">
-        <p class="lead">
-            @if (count($posts) == 0)
-                There are currently no blog posts.
-            @else
-                Here you may find our blog posts:
-            @endif
-        </p>
-    </div>
     @auth('blog')
         <div class="col-xs-4">
             <div class="pull-right">
