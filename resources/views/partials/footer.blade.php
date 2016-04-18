@@ -8,11 +8,6 @@
                     &copy; <a href="https://github.com/dybaoqee">{{ Config::get('cms.author') }}</a> 2016. All rights reserved.
                 </p>
             </div>
-            <div class="col-xs-4">
-                <p class="text-muted credit pull-right">
-                    Generated in {{ round((microtime(1) - LARAVEL_START), 4) }} sec.
-                </p>
-            </div>
         </div>
     </div>
     <div class="container visible-xs">
@@ -22,9 +17,9 @@
     </div>
 </div>
 
-<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery-timeago/1.4.1/jquery.timeago.min.js"></script>
-<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.2/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="{{ asset('assets/scripts/jquery.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('assets/scripts/jquery.timeago.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('assets/scripts/bootstrap.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('assets/scripts/cms-main.js') }}"></script>
 @section('js')
 @show
