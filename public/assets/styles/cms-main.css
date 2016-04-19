@@ -11,8 +11,8 @@ body {
 	padding: 0 0 60px;
 }
 
-#wrap > .navbar {
-	opacity: 0.1;
+#wrap > .container {
+	padding: 60px 15px;
 }
 
 .navbar {

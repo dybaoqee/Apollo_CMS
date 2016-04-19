@@ -144,16 +144,16 @@ class NavigationSubscriber
         // add the blog
         if ($this->blogging) {
             $this->navigation->addToMain(
-                ['title' => 'Blog', 'slug' => 'blog/posts', 'icon' => 'book']
+                ['title' => '目录', 'slug' => 'blog/posts', 'icon' => 'book']
             );
         }
 
         // add the events
-        if ($this->events) {
-            $this->navigation->addToMain(
-                ['title' => 'Events', 'slug' => 'events', 'icon' => 'calendar']
-            );
-        }
+//        if ($this->events) {
+//            $this->navigation->addToMain(
+//                ['title' => 'Events', 'slug' => 'events', 'icon' => 'calendar']
+//            );
+//        }
     }
 
     /**
