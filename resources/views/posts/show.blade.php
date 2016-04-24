@@ -56,14 +56,12 @@
         </div>
         <div class="col-md-4 col-xs-6">
             <div class="pull-right">
-                <p>Author: {!! $post->author !!}</p>
             </div>
         </div>
     </div>
     <div class="visible-xs">
         <div class="col-xs-12">
             <p class="lead">{!! $post->summary !!}</p>
-            <p>Author: {!! $post->author !!}</p>
         </div>
     </div>
 </div>

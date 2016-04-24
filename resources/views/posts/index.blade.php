@@ -5,20 +5,22 @@ Apollo
 @stop
 
 @section('content')
-<div class="row">
-    @auth('blog')
-        <div class="col-xs-4">
-            <div class="pull-right">
-                <a class="btn btn-primary" href="{!! URL::route('blog.posts.create') !!}"><i class="fa fa-book"></i> New Post</a>
+@foreach($posts as $post)
+    <a href="{!! URL::route('blog.posts.show', array('posts' => $post->id)) !!}">
+        <div class="list-item">
+            <div class="list-thumbnail" style="background-image: url({!! $post->image !!});">
+            </div>
+            <div class="list-description">
+                <div class="list-title">
+                    {!! $post->title !!}
+                </div>
+                <div class="list-rooms">
+                    {!! $post->summary !!}
+                </div>
             </div>
         </div>
-    @endauth
-</div>
-@foreach($posts as $post)
-    <h2>{!! $post->title !!}</h2>
-    <p>
-        <strong>{!! $post->summary !!}</strong>
-    </p>
+    </a>
+    <!--
     <p>
         <a class="btn btn-success" href="{!! URL::route('blog.posts.show', array('posts' => $post->id)) !!}"><i class="fa fa-file-text"></i> Show Post</a>
         @auth('blog')
@@ -26,6 +28,7 @@ Apollo
         @endauth
     </p>
     <br>
+    -->
 @endforeach
 {!! $links !!}
 @stop

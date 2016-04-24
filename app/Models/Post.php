@@ -60,7 +60,7 @@ class Post extends AbstractModel implements HasPresenter
      *
      * @var array
      */
-    public static $index = ['id', 'title', 'summary'];
+    public static $index = ['id', 'title', 'summary', 'image'];
 
     /**
      * The max posts per page when displaying a paginated index.

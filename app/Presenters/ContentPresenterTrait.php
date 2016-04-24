@@ -29,4 +29,5 @@ trait ContentPresenterTrait
     {
         return Markdown::convertToHtml($this->getWrappedObject()->body);
     }
+
 }
