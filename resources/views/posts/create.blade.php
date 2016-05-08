@@ -19,6 +19,8 @@ Create Post
         'defaults' => [
             'title' => '',
             'summary' => '',
+            'image' => '',
+            'additional-images' => '',
             'body' => '',
     ], ];
     ?>

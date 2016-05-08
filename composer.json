@@ -18,6 +18,7 @@
     "require": {
         "php": ">=5.5.9",
         "laravel/framework": "~5.1.10",
+        "illuminate/html": "5.*",
         "fideloper/proxy": "~3.0",
         "graham-campbell/binput": "~3.0",
         "graham-campbell/contact": "~1.0",

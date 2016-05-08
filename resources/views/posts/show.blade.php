@@ -104,10 +104,20 @@
 <?php $post_id = $post->id; ?>
 <div id="comments" data-url="{!! URL::route('blog.posts.comments.index', array('posts' => $post_id)) !!}">
     @if (count($comments) == 0)
-    <p id="nocomments">There are currently no comments.</p>
+        <p id="nocomments">There are currently no comments.</p>
     @else
         @foreach ($comments as $comment)
             @include('posts.comment')
+        @endforeach
+    @endif
+</div>
+
+<div id="comments" data-url="{!! URL::route('blog.posts.images.index', array('posts' => $post_id)) !!}">
+    @if (count($images) == 0)
+        <p id="nocomments">There are currently no comments.</p>
+    @else
+        @foreach ($images as $image)
+            <image src="{!! $image->path !!}" style="height: 200px; width:300px;" ></image>
         @endforeach
     @endif
 </div>

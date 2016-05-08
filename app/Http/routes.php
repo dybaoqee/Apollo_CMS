@@ -45,6 +45,7 @@ $router->resource('pages', 'PageController');
 if (Config::get('cms.blogging')) {
     $router->resource('blog/posts', 'PostController');
     $router->resource('blog/posts.comments', 'CommentController');
+    $router->resource('blog/posts.images', 'ImageController');
 }
 
 // event routes

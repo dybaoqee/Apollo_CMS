@@ -12,6 +12,7 @@
 namespace GrahamCampbell\BootstrapCMS\Http\Controllers;
 
 use GrahamCampbell\Binput\Facades\Binput;
+use Illuminate\Support\Facades\Input;
 use GrahamCampbell\BootstrapCMS\Facades\PostRepository;
 use GrahamCampbell\Credentials\Facades\Credentials;
 use Illuminate\Support\Facades\Redirect;
@@ -25,6 +26,8 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
  */
 class PostController extends AbstractController
 {
+
+    protected $destinationPath = '/Users/eric.qi/workspace/Apollo_CMS/public/upload';
     /**
      * Create a new instance.
      *
@@ -74,8 +77,18 @@ class PostController extends AbstractController
     public function store()
     {
         $input = array_merge(['user_id' => Credentials::getuser()->id], Binput::only([
-            'title', 'summary', 'body',
+            'title', 'summary', 'body'
         ]));
+
+        //$file = array('image' => Input::file('image'));
+        if (Input::file('image')->isValid())
+        {
+            $newFilename = round(microtime(true)). '.jpg';
+            Input::file('image')->move($this->destinationPath, $newFilename);
+            //return Redirect::to('http://www.google.com');
+            $input['image'] = $newFilename;
+        }
+
 
         $val = PostRepository::validate($input, array_keys($input));
         if ($val->fails()) {
@@ -103,10 +116,8 @@ class PostController extends AbstractController
         $comments = $post->comments()->orderBy('id', 'desc')->get();
 
         $images = $post->images()->orderBy('id', 'desc')->get();
-//
-//        echo $images;
 
-        return View::make('posts.show', ['post' => $post, 'comments' => $comments]);
+        return View::make('posts.show', ['post' => $post, 'comments' => $comments, 'images' => $images]);
     }
 
     /**
