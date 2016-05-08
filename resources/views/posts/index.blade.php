@@ -8,7 +8,7 @@ Apollo
 @foreach($posts as $post)
     <a href="{!! URL::route('blog.posts.show', array('posts' => $post->id)) !!}" class="post-link">
         <div class="list-item">
-            <div class="list-thumbnail" style="background-image: url({!! $post->image !!});">
+            <div class="list-thumbnail" style="background-image: url(/upload/{!! $post->image !!});">
             </div>
             <div class="list-description">
                 <div class="list-title">
