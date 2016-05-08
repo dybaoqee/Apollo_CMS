@@ -11,8 +11,7 @@
 
 namespace GrahamCampbell\BootstrapCMS\Models;
 
-use GrahamCampbell\BootstrapCMS\Models\Relations\HasManyCommentsTrait;
-use GrahamCampbell\BootstrapCMS\Models\Relations\HasManyImagesTrait;
+use GrahamCampbell\BootstrapCMS\Models\Relations\BelongsToPostTrait;
 use GrahamCampbell\Credentials\Models\AbstractModel;
 use GrahamCampbell\Credentials\Models\Relations\BelongsToUserTrait;
 use GrahamCampbell\Credentials\Models\Relations\RevisionableTrait;
@@ -20,27 +19,27 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use McCool\LaravelAutoPresenter\HasPresenter;
 
 /**
- * This is the post model class.
+ * This is the comment model class.
  *
  * @author Graham Campbell <graham@alt-three.com>
  */
-class Post extends AbstractModel implements HasPresenter
+class Image extends AbstractModel implements HasPresenter
 {
-    use HasManyImagesTrait, HasManyCommentsTrait, BelongsToUserTrait, RevisionableTrait, SoftDeletes;
+    use BelongsToPostTrait, BelongsToUserTrait, RevisionableTrait, SoftDeletes;
 
     /**
-     * The table the posts are stored in.
+     * The table the comments are stored in.
      *
      * @var string
      */
-    protected $table = 'posts';
+    protected $table = 'images';
 
     /**
      * The model name.
      *
      * @var string
      */
-    public static $name = 'post';
+    public static $name = 'image';
 
     /**
      * The properties on the model that are dates.
@@ -54,21 +53,14 @@ class Post extends AbstractModel implements HasPresenter
      *
      * @var array
      */
-    protected $keepRevisionOf = ['title', 'summary', 'body'];
+    protected $keepRevisionOf = ['path'];
 
     /**
      * The columns to select when displaying an index.
      *
      * @var array
      */
-    public static $index = ['id', 'title', 'summary', 'image'];
-
-    /**
-     * The max posts per page when displaying a paginated index.
-     *
-     * @var int
-     */
-    public static $paginate = 10;
+    public static $index = ['id', 'path', 'user_id', 'created_at', 'post_id'];
 
     /**
      * The columns to order by when displaying an index.
@@ -85,15 +77,14 @@ class Post extends AbstractModel implements HasPresenter
     public static $sort = 'desc';
 
     /**
-     * The post validation rules.
+     * The comment validation rules.
      *
      * @var array
      */
     public static $rules = [
-        'title'   => 'required',
-        'summary' => 'required',
-        'body'    => 'required',
+        'path'    => 'required',
         'user_id' => 'required',
+        'post_id' => 'required',
     ];
 
     /**
@@ -103,16 +94,6 @@ class Post extends AbstractModel implements HasPresenter
      */
     public function getPresenterClass()
     {
-        return 'GrahamCampbell\BootstrapCMS\Presenters\PostPresenter';
-    }
-
-    /**
-     * Before deleting an existing model.
-     *
-     * @return void
-     */
-    public function beforeDelete()
-    {
-        $this->deleteComments();
+        return 'GrahamCampbell\BootstrapCMS\Presenters\ImagePresenter';
     }
 }

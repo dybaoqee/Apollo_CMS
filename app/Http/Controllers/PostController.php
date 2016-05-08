@@ -102,6 +102,10 @@ class PostController extends AbstractController
 
         $comments = $post->comments()->orderBy('id', 'desc')->get();
 
+        $images = $post->images()->orderBy('id', 'desc')->get();
+//
+//        echo $images;
+
         return View::make('posts.show', ['post' => $post, 'comments' => $comments]);
     }
 

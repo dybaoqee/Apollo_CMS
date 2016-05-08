@@ -10,6 +10,8 @@
 </div>
 @stop
 
+<link rel="stylesheet" type="text/css" href="https://res.wx.qq.com/open/libs/weui/0.4.1/weui.min.css">
+
 @section('content')
 @auth('blog')
     <div class="well clearfix">
