@@ -34,6 +34,10 @@ Edit {{ $post->title }}
             'title' => $post->title,
             'summary' => $post->summary,
             'body' => $post->body,
+            'address' => '',
+            'map' => '',
+            'promotion' => '',
+            'phone' => ''
     ], ];
     ?>
     @include('posts.form')

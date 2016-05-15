@@ -69,7 +69,28 @@
 </div>
 <br>
 
+
+<img src="/upload/{!! $post->image !!}" />
 {!! $post->content !!}
+<br><hr>
+
+<div style="height:300px;width:800px;max-width:100%;list-style:none; transition: none;overflow:hidden;">
+    <div id="embed-map-display" style="height:100%; width:100%;max-width:100%;">
+        <iframe style="height:100%;width:100%;border:0;" frameborder="0" src="{!! $post->map !!}"></iframe>
+    </div>
+</div>
+<br><hr>
+
+{!! $post->address !!}
+
+<br><hr>
+
+{!! $post->promotion !!}
+
+<br><hr>
+
+{!! $post->phone !!}
+
 <br><hr>
 
 <h3>Comments</h3>
@@ -114,7 +135,7 @@
 
 <div id="comments" data-url="{!! URL::route('blog.posts.images.index', array('posts' => $post_id)) !!}">
     @if (count($images) == 0)
-        <p id="nocomments">There are currently no comments.</p>
+        <p id="nocomments">There are currently no images.</p>
     @else
         @foreach ($images as $image)
             <image src="{!! $image->path !!}" style="height: 200px; width:300px;" ></image>

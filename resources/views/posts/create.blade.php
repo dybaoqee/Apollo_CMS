@@ -22,6 +22,10 @@ Create Post
             'image' => '',
             'additional-images' => '',
             'body' => '',
+            'address' => '',
+            'map' => '',
+            'promotion' => '',
+            'phone' => ''
     ], ];
     ?>
     @include('posts.form')

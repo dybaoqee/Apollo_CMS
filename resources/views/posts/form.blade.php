@@ -34,6 +34,38 @@
         </div>
     </div>
 
+    <div class="form-group{!! ($errors->has('address')) ? ' has-error' : '' !!}">
+        <label class="col-md-2 col-sm-3 col-xs-10 control-label" for="address">地址</label>
+        <div class="col-lg-6 col-md-8 col-sm-9 col-xs-12">
+            <input name="address" value="{!! Request::old('address', $form['defaults']['address']) !!}" type="text" class="form-control" placeholder="地址">
+            {!! ($errors->has('address') ? $errors->first('address') : '') !!}
+        </div>
+    </div>
+
+    <div class="form-group{!! ($errors->has('map')) ? ' has-error' : '' !!}">
+        <label class="col-md-2 col-sm-3 col-xs-10 control-label" for="map">地图链接</label>
+        <div class="col-lg-6 col-md-8 col-sm-9 col-xs-12">
+            <input name="map" value="{!! Request::old('map', $form['defaults']['map']) !!}" type="text" class="form-control" placeholder="地图链接">
+            {!! ($errors->has('map') ? $errors->first('map') : '') !!}
+        </div>
+    </div>
+
+    <div class="form-group{!! ($errors->has('promotion')) ? ' has-error' : '' !!}">
+        <label class="col-md-2 col-sm-3 col-xs-10 control-label" for="promotion">优惠</label>
+        <div class="col-lg-6 col-md-8 col-sm-9 col-xs-12">
+            <input name="promotion" value="{!! Request::old('promotion', $form['defaults']['promotion']) !!}" type="text" class="form-control" placeholder="优惠">
+            {!! ($errors->has('promotion') ? $errors->first('promotion') : '') !!}
+        </div>
+    </div>
+
+    <div class="form-group{!! ($errors->has('phone')) ? ' has-error' : '' !!}">
+        <label class="col-md-2 col-sm-3 col-xs-10 control-label" for="phone">电话</label>
+        <div class="col-lg-6 col-md-8 col-sm-9 col-xs-12">
+            <input name="phone" value="{!! Request::old('phone', $form['defaults']['address']) !!}" type="text" class="form-control" placeholder="电话">
+            {!! ($errors->has('phone') ? $errors->first('phone') : '') !!}
+        </div>
+    </div>
+
     <div class="form-group">
         <div class="col-md-offset-2 col-sm-offset-3 col-sm-10 col-xs-12">
             <button class="btn btn-primary" type="submit"><i class="fa fa-rocket"></i> {!! $form['button'] !!}</button>

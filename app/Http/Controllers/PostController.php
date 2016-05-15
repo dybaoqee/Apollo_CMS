@@ -77,7 +77,8 @@ class PostController extends AbstractController
     public function store()
     {
         $input = array_merge(['user_id' => Credentials::getuser()->id], Binput::only([
-            'title', 'summary', 'body'
+            'title', 'summary', 'body', 'address', 'map',
+            'promotion', 'phone'
         ]));
 
         //$file = array('image' => Input::file('image'));
@@ -117,7 +118,12 @@ class PostController extends AbstractController
 
         $images = $post->images()->orderBy('id', 'desc')->get();
 
-        return View::make('posts.show', ['post' => $post, 'comments' => $comments, 'images' => $images]);
+        return View::make('posts.show',
+            [
+                'post' => $post,
+                'comments' => $comments,
+                'images' => $images
+            ]);
     }
 
     /**
@@ -144,7 +150,10 @@ class PostController extends AbstractController
      */
     public function update($id)
     {
-        $input = Binput::only(['title', 'summary', 'body']);
+        $input = Binput::only([
+            'title', 'summary', 'body', 'address', 'map',
+            'promotion', 'phone'
+        ]);
 
         $val = PostRepository::validate($input, array_keys($input));
         if ($val->fails()) {
