@@ -8,6 +8,7 @@
             </button>
             <a class="navbar-brand" href="{!! $main[0]['url'] !!}">{{ $title }}</a>
         </div>
+        @if ($bar)
         <div class="collapse navbar-collapse">
             <div id="main-nav">
                 <ul class="nav navbar-nav">
@@ -60,5 +61,6 @@
                 </ul>
             </div>
         </div>
+        @endif
     </div>
 </div>
