@@ -4,8 +4,8 @@
 
 <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css">
 <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.2.3/animate.min.css">
-<link rel="stylesheet" type="text/css" href="{{ asset('assets/styles/cms-main.css') }}">
 <link rel="stylesheet" type="text/css" href="{{ asset('assets/styles/bootstrap.'.Config::get('theme.name', 'default').'.min.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ asset('assets/styles/cms-main.css') }}">
 
 @section('css')
 @show
