@@ -6,7 +6,6 @@
 
 @section('top')
 <div class="page-header">
-<h1>{{ $post->title }}</h1>
 </div>
 @stop
 
@@ -48,100 +47,138 @@
             </div>
         </div>
     </div>
-    <hr>
 @endauth
 
-<div class="row">
-    <div class="hidden-xs">
-        <div class="col-md-8 col-xs-6">
-            <p class="lead">{!! $post->summary !!}</p>
-        </div>
-        <div class="col-md-4 col-xs-6">
-            <div class="pull-right">
+    <div class="row">
+        <div class="col-xs-12 col-md-8 col-md-offset-2">
+            <div id="carousel-images-generic" class="carousel slide" data-ride="carousel">
+                 <!-- Indicators -->
+                 <ol class="carousel-indicators">
+                    <li data-target="#carousel-images-generic" data-slide-to="0" class="active"></li>
+                    <li data-target="#carousel-images-generic" data-slide-to="1"></li>
+                    <li data-target="#carousel-images-generic" data-slide-to="2"></li>
+                </ol>
+
+                <!-- Wrapper for slides -->
+                <div class="carousel-inner" role="listbox">
+                    <div class="item active">
+                        <img src="/upload/{!! $post->image !!}" alt="">
+                        <div class="carousel-caption">
+                            ...
+                        </div>
+                    </div>
+                    <div class="item">
+                        <img src="/upload/{!! $post->image !!}" alt="">
+                        <div class="carousel-caption">
+                            ...
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Controls -->
+                <a class="left carousel-control" href="#carousel-images-generic" role="button" data-slide="prev">
+                    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="right carousel-control" href="#carousel-images-generic" role="button" data-slide="next">
+                    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
             </div>
         </div>
-    </div>
-    <div class="visible-xs">
-        <div class="col-xs-12">
-            <p class="lead">{!! $post->summary !!}</p>
+
+        <div class="col-xs-12 col-md-8 col-md-offset-2">
+            <hr>
+                <p class="lead">{!! $post->summary !!}</p>
         </div>
-    </div>
-</div>
-<br>
+
+        <div class="col-xs-12 col-md-8 col-md-offset-2">
+          <hr>
+            <button type="button" class="btn btn-success btn-lg btn-block">
+                {!! $post->promotion !!}
+            </button>
+        </div>
 
 
-<img src="/upload/{!! $post->image !!}" />
-{!! $post->content !!}
-<br><hr>
+        <div class="col-xs-12 col-md-8 col-md-offset-2">
+            <hr>
+            <p class="">{!! $post->body !!}</p>
+        </div>
 
-<div style="height:300px;width:800px;max-width:100%;list-style:none; transition: none;overflow:hidden;">
-    <div id="embed-map-display" style="height:100%; width:100%;max-width:100%;">
-        <iframe style="height:100%;width:100%;border:0;" frameborder="0" src="{!! $post->map !!}"></iframe>
-    </div>
-</div>
-<br><hr>
-
-{!! $post->address !!}
-
-<br><hr>
-
-{!! $post->promotion !!}
-
-<br><hr>
-
-{!! $post->phone !!}
-
-<br><hr>
-
-<h3>Comments</h3>
-@auth('user')
-    <br>
-    <div class="well well-sm clearfix">
-        <form id="commentform" class="form-vertical" action="{{ URL::route('blog.posts.comments.store', array('posts' => $post->id)) }}" method="POST">
-            {{ csrf_field() }}
-            <div class="form-group">
-                <div class="col-xs-12">
-                    <textarea id="body" name="body" class="form-control comment-box" placeholder="Type a comment..." rows="3"></textarea>
+        <div class="col-xs-12 col-md-8 col-md-offset-2">
+            <div style="height:300px;width:100%;max-width:100%;list-style:none; transition: none;overflow:hidden;">
+                <div id="embed-map-display" style="height:100%; width:100%;max-width:100%;">
+                    <iframe style="height:100%;width:100%;border:0;" frameborder="0" src="{!! $post->map !!}"></iframe>
                 </div>
             </div>
-            <div class="form-group">
-                <div class="col-xs-12 comment-button">
-                    <button id="contact-submit" type="submit" class="btn btn-primary"><i class="fa fa-comment"></i> Post Comment</button> <label id="commentstatus"></label>
-                </div>
+        </div>
+
+
+        <div class="col-xs-12 col-md-8 col-md-offset-2">
+            <hr>
+            <span class="glyphicon glyphicon-map-marker"></span>{!! $post->address !!}
+        </div>
+
+        <div class="col-xs-12 col-md-8 col-md-offset-2">
+             <span class="glyphicon glyphicon-phone-alt"></span>
+             {!! $post->phone !!}
+        </div>
+
+        <div class="col-xs-12 col-md-8 col-md-offset-2">
+            <h3>Comments</h3>
+            @auth('user')
+            <br>
+            <div class="well well-sm clearfix">
+                <form id="commentform" class="form-vertical" action="{{ URL::route('blog.posts.comments.store', array('posts' => $post->id)) }}" method="POST">
+                    {{ csrf_field() }}
+                    <div class="form-group">
+                        <div class="col-xs-12">
+                            <textarea id="body" name="body" class="form-control comment-box" placeholder="Type a comment..." rows="3"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-xs-12 comment-button">
+                            <button id="contact-submit" type="submit" class="btn btn-primary">
+                                <i class="fa fa-comment"></i>
+                                 Post Comment
+                            </button>
+                            <label id="commentstatus"></label>
+                        </div>
+                    </div>
+                </form>
             </div>
-        </form>
-    </div>
-@else
-<p>
-    @if (Config::get('credentials.regallowed'))
-        <strong>Please <a href="{!! URL::route('account.login') !!}">login</a> or <a href="{!! URL::route('account.register') !!}">register</a> to post a comment.</strong>
-    @else
-        <strong>Please <a href="{!! URL::route('account.login') !!}">login</a> to post a comment.</strong>
-    @endif
-</p>
-@endauth
-<br>
+            @else
+            <p>
+                @if (Config::get('credentials.regallowed'))
+                    <strong>Please <a href="{!! URL::route('account.login') !!}">login</a> or <a href="{!! URL::route('account.register') !!}">register</a> to post a comment.</strong>
+                @else
+                    <strong>Please <a href="{!! URL::route('account.login') !!}">login</a> to post a comment.</strong>
+                @endif
+            </p>
+            @endauth
 
-<?php $post_id = $post->id; ?>
-<div id="comments" data-url="{!! URL::route('blog.posts.comments.index', array('posts' => $post_id)) !!}">
-    @if (count($comments) == 0)
-        <p id="nocomments">There are currently no comments.</p>
-    @else
-        @foreach ($comments as $comment)
-            @include('posts.comment')
-        @endforeach
-    @endif
-</div>
+            <?php $post_id = $post->id; ?>
+            <div id="comments" data-url="{!! URL::route('blog.posts.comments.index', array('posts' => $post_id)) !!}">
+            @if (count($comments) == 0)
+                <p id="nocomments">There are currently no comments.</p>
+            @else
+                @foreach ($comments as $comment)
+                    @include('posts.comment')
+                @endforeach
+            @endif
+            </div>
 
-<div id="comments" data-url="{!! URL::route('blog.posts.images.index', array('posts' => $post_id)) !!}">
-    @if (count($images) == 0)
-        <p id="nocomments">There are currently no images.</p>
-    @else
-        @foreach ($images as $image)
-            <image src="{!! $image->path !!}" style="height: 200px; width:300px;" ></image>
-        @endforeach
-    @endif
-</div>
+            <div id="comments" data-url="{!! URL::route('blog.posts.images.index', array('posts' => $post_id)) !!}">
+            @if (count($images) == 0)
+                <p id="nocomments">There are currently no images.</p>
+            @else
+                @foreach ($images as $image)
+                    <image src="{!! $image->path !!}" style="height: 200px; width:300px;" ></image>
+                @endforeach
+            @endif
+            </div>
+        </div>
+    </div><!-- row -->
 @stop
 
 @section('bottom')
@@ -149,7 +186,7 @@
 @include('posts.delete')
 @endauth
 @auth('mod')
-<div id="edit_comment" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+  <div id="edit_comment" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
@@ -174,7 +211,7 @@
             </div>
         </div>
     </div>
-</div>
+   </div>
 @endauth
 @stop
 

@@ -4,22 +4,36 @@
 Apollo
 @stop
 
+@section('top')
+<div class="page-header">
+<h4>热门推荐</h4>
+</div>
+@stop
+
 @section('content')
+<div class="row">
+    <div class="col-xs-12 col-md-8 col-md-offset-2">
 @foreach($posts as $post)
-    <a href="{!! URL::route('blog.posts.show', array('posts' => $post->id)) !!}" class="post-link">
-        <div class="list-item">
-            <div class="list-thumbnail" style="background-image: url(/upload/{!! $post->image !!});">
+        <a href="{!! URL::route('blog.posts.show', array('posts' => $post->id)) !!}">
+        <div class="item-card">
+            <div class="item-thumbnail">
+                <img class="img-responsive" src="/upload/{!! $post->image !!}">
             </div>
-            <div class="list-description">
-                <div class="list-title">
-                    {!! $post->title !!}
+            <div class="item-description">
+                <div class="item-title">
+                    <h1>{!! $post->title !!}</h1>
                 </div>
-                <div class="list-rooms">
-                    {!! $post->summary !!}
+                <div class="item-sticker">
+                    <h3>{!! $post->promotion !!}9折</h3>
+                </div>
+                <div class="item-rooms">
+                    <p>{!! $post->summary !!}</p>
                 </div>
             </div>
         </div>
-    </a>
+        </a>
+@endforeach
+{!! $links !!}
     <!--
     <p>
         <a class="btn btn-success" href="{!! URL::route('blog.posts.show', array('posts' => $post->id)) !!}"><i class="fa fa-file-text"></i> Show Post</a>
@@ -29,8 +43,8 @@ Apollo
     </p>
     <br>
     -->
-@endforeach
-{!! $links !!}
+    </div>
+</div>
 @stop
 
 @section('bottom')
