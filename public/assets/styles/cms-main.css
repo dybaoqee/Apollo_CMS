@@ -12,38 +12,68 @@ body {
 }
 
 #wrap > .container {
-	padding: 0px;
+    padding: 60px 15px;
+}
+
+
+.item-card {
+	color: #000000;
+	height: 255px;
+	border-radius: 5px;
+	background-color: #ffffff;
+	box-shadow: #666 0px 0px 3px;
+}
+
+.item-card h1 {
+	font-weight:bold;
+}
+
+.item-thumbnail {
+    float: left;
+    width: 30%;
+    height: 100%;
+}
+
+.item-thumbnail img{
 	width: 100%;
 	height: 100%;
-	position: absolute;
-	top: 50px;
-	bottom: 60px;
 }
 
-.container a.post-link {
-	height: 30%;
-	display: block;
+.item-description {
+	margin-left: 30%;
+	height: :100%;
 }
 
-.list-item {
-	height: 100%;
+.item-title {
+	margin-top: 5%;
+	margin-left: 10%;
 }
 
-.list-thumbnail, .list-description {
-	float: left;
-	width: 50%;
-	padding: 10px;
-	height: 100%;
+.item-sticker {
+	opacity: 0.6;
+	float: right;
+	background-color: #d03b3b;
+	color: #ffffff;
+	width: 20%;
+	height: 10%;
+	padding-left: 3%;
 }
 
-.list-thumbnail{
-	background-size: cover;
-	background-repeat: no-repeat;
-	background-position: center center;
+.item-rooms {
+	margin-left: 10%;
+    margin-top: 15%;
+    margin-right: 20%;
+    font-size: 1em;
+    line-height: 1.5em;
 }
 
-.list-description{
-	background-color: white;
+.bs-docs-separator {
+    margin: 40px 0 39px;
+}
+
+.navbar-default {
+    background-color: #cb0013;
+    border-color: #bf3e11;
 }
 
 .navbar {

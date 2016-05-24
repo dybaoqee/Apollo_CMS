@@ -26,8 +26,6 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
  */
 class PostController extends AbstractController
 {
-
-    protected $destinationPath = '/Users/eric.qi/workspace/Apollo_CMS/public/upload';
     /**
      * Create a new instance.
      *
@@ -85,7 +83,8 @@ class PostController extends AbstractController
         if (Input::file('image')->isValid())
         {
             $newFilename = round(microtime(true)). '.jpg';
-            Input::file('image')->move($this->destinationPath, $newFilename);
+            $destinationPath = public_path('upload');
+            Input::file('image')->move($destinationPath, $newFilename);
             //return Redirect::to('http://www.google.com');
             $input['image'] = $newFilename;
         }
