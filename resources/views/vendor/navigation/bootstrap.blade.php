@@ -6,7 +6,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="{!! $main[0]['url'] !!}">{{ $title }}</a>
+            <a class="navbar-brand" href="/">{{ $title }}</a>
         </div>
         @if ($bar)
         <div class="collapse navbar-collapse">

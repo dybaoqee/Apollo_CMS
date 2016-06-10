@@ -24,7 +24,7 @@ Apollo
                     <h1>{!! $post->title !!}</h1>
                 </div>
                 <div class="item-sticker">
-                    <h3>{!! $post->promotion !!}9折</h3>
+                    <h3>{!! $post->promotion !!}</h3>
                 </div>
                 <div class="item-rooms">
                     <p>{!! $post->summary !!}</p>
