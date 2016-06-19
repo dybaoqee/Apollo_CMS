@@ -6,7 +6,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/">{{ $title }}</a>
+            <a class="navbar-brand" href="/">{!! (Request::is('blog/posts') ? $title : '返回首页') !!}</a>
         </div>
         @if ($bar)
         <div class="collapse navbar-collapse">

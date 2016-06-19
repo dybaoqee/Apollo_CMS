@@ -16,6 +16,7 @@ use GrahamCampbell\BootstrapCMS\Navigation\Factory;
 use GrahamCampbell\BootstrapCMS\Observers\PageObserver;
 use GrahamCampbell\BootstrapCMS\Repositories\CommentRepository;
 use GrahamCampbell\BootstrapCMS\Repositories\EventRepository;
+use GrahamCampbell\BootstrapCMS\Repositories\ImageRepository;
 use GrahamCampbell\BootstrapCMS\Repositories\PageRepository;
 use GrahamCampbell\BootstrapCMS\Repositories\PostRepository;
 use GrahamCampbell\BootstrapCMS\Subscribers\CommandSubscriber;
@@ -88,6 +89,7 @@ class AppServiceProvider extends ServiceProvider
         $this->registerEventRepository();
         $this->registerPageRepository();
         $this->registerPostRepository();
+        $this->registerImageRepository();
 
         $this->registerCommandSubscriber();
         $this->registerNavigationSubscriber();
@@ -189,6 +191,25 @@ class AppServiceProvider extends ServiceProvider
         });
 
         $this->app->alias('postrepository', 'GrahamCampbell\BootstrapCMS\Repositories\PostRepository');
+    }
+
+    /**
+     * Register the image repository class.
+     *
+     * @return void
+     */
+    protected function registerImageRepository()
+    {
+        $this->app->singleton('imagerepository', function ($app) {
+            $model = $app['config']['cms.image'];
+            $comment = new $model();
+
+            $validator = $app['validator'];
+
+            return new ImageRepository($comment, $validator);
+        });
+
+        $this->app->alias('imagerepository', 'GrahamCampbell\BootstrapCMS\Repositories\ImageRepository');
     }
 
     /**

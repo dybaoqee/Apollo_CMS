@@ -144,6 +144,9 @@ return [
 
     'comment' => 'GrahamCampbell\BootstrapCMS\Models\Comment',
 
+
+    'image' => 'GrahamCampbell\BootstrapCMS\Models\Image',
+
     /*
     |--------------------------------------------------------------------------
     | Event Model

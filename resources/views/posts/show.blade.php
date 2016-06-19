@@ -9,7 +9,7 @@
 </div>
 @stop
 
-<link rel="stylesheet" type="text/css" href="https://res.wx.qq.com/open/libs/weui/0.4.1/weui.min.css">
+<link rel="stylesheet" type="text/css" href="/assets/styles/weui.min.css">
 
 @section('content')
 @auth('blog')
@@ -51,40 +51,40 @@
 
     <div class="row">
         <div class="col-xs-12 col-md-8 col-md-offset-2">
-            <div id="carousel-images-generic" class="carousel slide" data-ride="carousel">
-                 <!-- Indicators -->
-                 <ol class="carousel-indicators">
-                    <li data-target="#carousel-images-generic" data-slide-to="0" class="active"></li>
-                    <li data-target="#carousel-images-generic" data-slide-to="1"></li>
-                    <li data-target="#carousel-images-generic" data-slide-to="2"></li>
-                </ol>
+            @if (count($images) == 0)
+                <img src="/upload/{!! $post->image !!}" alt="">
+            @else
+                <div id="carousel-images-generic" class="carousel slide" data-ride="carousel">
+                    <!-- Wrapper for slides -->
+                    <div class="carousel-inner" role="listbox">
+                        <div class="item active">
+                            <img src="/upload/{!! $post->image !!}" alt="">
+                            <div class="carousel-caption">
+                                ...
+                            </div>
+                        </div>
+                        @foreach ($images as $image)
+                            <div class="item">
+                                <img src="/upload/{!! $image->path !!}" alt="">
+                                <div class="carousel-caption">
+                                    ...
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
 
-                <!-- Wrapper for slides -->
-                <div class="carousel-inner" role="listbox">
-                    <div class="item active">
-                        <img src="/upload/{!! $post->image !!}" alt="">
-                        <div class="carousel-caption">
-                            ...
-                        </div>
-                    </div>
-                    <div class="item">
-                        <img src="/upload/{!! $post->image !!}" alt="">
-                        <div class="carousel-caption">
-                            ...
-                        </div>
-                    </div>
+                    <!-- Controls -->
+                    <a class="left carousel-control" href="#carousel-images-generic" role="button" data-slide="prev">
+                        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="right carousel-control" href="#carousel-images-generic" role="button" data-slide="next">
+                        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
                 </div>
+            @endif
 
-                <!-- Controls -->
-                <a class="left carousel-control" href="#carousel-images-generic" role="button" data-slide="prev">
-                    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-                    <span class="sr-only">Previous</span>
-                </a>
-                <a class="right carousel-control" href="#carousel-images-generic" role="button" data-slide="next">
-                    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-                    <span class="sr-only">Next</span>
-                </a>
-            </div>
         </div>
 
         <div class="col-xs-12 col-md-8 col-md-offset-2">
@@ -94,11 +94,22 @@
 
         <div class="col-xs-12 col-md-8 col-md-offset-2">
           <hr>
-            <button type="button" class="btn btn-success btn-lg btn-block">
+            <button type="button" class="btn btn-success btn-lg btn-block dialog2Btn">
                 {!! $post->promotion !!}
             </button>
         </div>
-
+        <!--BEGIN dialog2-->
+        <div class="weui_dialog_alert" id="dialog2" style="display: none;">
+            <div class="weui_mask"></div>
+            <div class="weui_dialog">
+                <div class="weui_dialog_hd"><strong class="weui_dialog_title">弹窗标题</strong></div>
+                <div class="weui_dialog_bd">弹窗内容，告知当前页面信息等</div>
+                <div class="weui_dialog_ft">
+                    <a href="javascript:;" class="weui_btn_dialog primary">确定</a>
+                </div>
+            </div>
+        </div>
+        <!--END dialog2-->
 
         <div class="col-xs-12 col-md-8 col-md-offset-2">
             <hr>
@@ -124,7 +135,7 @@
              {!! $post->phone !!}
         </div>
 
-        <div class="col-xs-12 col-md-8 col-md-offset-2">
+        <div class="col-xs-12 col-md-8 col-md-offset-2" style="display: none;">
             <h3>Comments</h3>
             @auth('user')
             <br>
@@ -167,17 +178,31 @@
                 @endforeach
             @endif
             </div>
-
-            <div id="comments" data-url="{!! URL::route('blog.posts.images.index', array('posts' => $post_id)) !!}">
-            @if (count($images) == 0)
-                <p id="nocomments">There are currently no images.</p>
-            @else
-                @foreach ($images as $image)
-                    <image src="{!! $image->path !!}" style="height: 200px; width:300px;" ></image>
-                @endforeach
-            @endif
-            </div>
         </div>
+
+        <!-- add new images -->
+        @auth('blog')
+        <div class="col-xs-12 col-md-8 col-md-offset-2">
+            <hr>
+            New images
+            <form id="imageform" class="form-vertical" action="{{ URL::route('blog.posts.images.store', array('posts' => $post->id)) }}" method="POST" enctype="multipart/form-data">
+                {{ csrf_field() }}
+                <div class="form-group">
+                    <div class="col-xs-12">
+                        <input name="image" type="file" class="form-control" data-provide="markdown" >
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-xs-12 comment-button">
+                        <button id="contact-submit" type="submit" class="btn btn-primary">
+                            Save
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        @endauth
+
     </div><!-- row -->
 @stop
 
@@ -220,6 +245,12 @@
 <script>
 var cmsCommentInterval = {!! Config::get('cms.commentfetch') !!};
 var cmsCommentTime = {!! Config::get('cms.commenttrans') !!};
+
+$('.dialog2Btn').on('click', function () {
+    $('#dialog2').show().on('click', '.weui_btn_dialog', function () {
+        $('#dialog2').off('click').hide();
+    });
+});
 </script>
 <script type="text/javascript" src="{{ asset('assets/scripts/cms-comment.js') }}"></script>
 @stop

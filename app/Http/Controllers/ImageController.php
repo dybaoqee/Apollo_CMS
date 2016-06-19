@@ -11,13 +11,12 @@ namespace GrahamCampbell\BootstrapCMS\Http\Controllers;
 use GrahamCampbell\Binput\Facades\Binput;
 use GrahamCampbell\BootstrapCMS\Facades\ImageRepository;
 use GrahamCampbell\BootstrapCMS\Facades\PostRepository;
-use GrahamCampbell\Throttle\Throttlers\ThrottlerInterface;
+use Illuminate\Support\Facades\Input;
+use GrahamCampbell\Credentials\Facades\Credentials;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\View;
-use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
-use Symfony\Component\HttpKernel\Exception\ConflictHttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 /**
@@ -41,9 +40,9 @@ class ImageController extends AbstractController
      *
      * @return void
      */
-    public function __construct(ThrottlerInterface $throttler)
+    public function __construct()
     {
-        $this->throttler = $throttler;
+        //$this->throttler = $throttler;
 
         $this->setPermissions([
             'store'   => 'user',
@@ -51,7 +50,7 @@ class ImageController extends AbstractController
             'destroy' => 'mod',
         ]);
 
-        //$this->beforeFilter('throttle.comment', ['only' => ['store']]);
+       // $this->beforeFilter('throttle.image', ['only' => ['store']]);
 
         parent::__construct();
     }
@@ -65,8 +64,6 @@ class ImageController extends AbstractController
      */
     public function index($postId)
     {
-        echo 'asdf';
-        die();
         $post = PostRepository::find($postId, ['id']);
         if (!$post) {
             Session::flash('error', 'The post you were viewing has been deleted.');
@@ -88,6 +85,38 @@ class ImageController extends AbstractController
         }
 
         return Response::json(array_reverse($data));
+    }
+
+    public function store($postId)
+    {
+        $input = [
+            'user_id' => Credentials::getuser()->id,
+            'post_id' => $postId
+        ];
+
+        if (Input::file('image')->isValid())
+        {
+            $newFilename = round(microtime(true)). '.jpg';
+            $destinationPath = public_path('upload');
+            Input::file('image')->move($destinationPath, $newFilename);
+            //return Redirect::to('http://www.google.com');
+            $input['path'] = $newFilename;
+        }
+
+       // $this->throttler->hit();
+
+        $image = ImageRepository::create($input);
+
+//        $contents = View::make('posts.comment', [
+//            'comment' => $image,
+//            'post_id' => $postId,
+//        ]);
+
+        return Response::json([
+            'success'    => true,
+            'msg'        => 'iamge created successfully.',
+            'image_id' => $image->id,
+        ], 201);
     }
 
 }
