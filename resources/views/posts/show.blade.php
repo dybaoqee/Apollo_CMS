@@ -52,20 +52,20 @@
     <div class="row">
         <div class="col-xs-12 col-md-8 col-md-offset-2">
             @if (count($images) == 0)
-                <img src="/upload/{!! $post->image !!}" alt="">
+                <img class='slideshow' src="/upload/{!! $post->image !!}" alt="">
             @else
                 <div id="carousel-images-generic" class="carousel slide" data-ride="carousel">
                     <!-- Wrapper for slides -->
                     <div class="carousel-inner" role="listbox">
                         <div class="item active">
-                            <img src="/upload/{!! $post->image !!}" alt="">
+                            <img class='slideshow' src="/upload/{!! $post->image !!}" alt="">
                             <div class="carousel-caption">
                                 ...
                             </div>
                         </div>
                         @foreach ($images as $image)
                             <div class="item">
-                                <img src="/upload/{!! $image->path !!}" alt="">
+                                <img class='slideshow' src="/upload/{!! $image->path !!}" alt="">
                                 <div class="carousel-caption">
                                     ...
                                 </div>
@@ -102,8 +102,8 @@
         <div class="weui_dialog_alert" id="dialog2" style="display: none;">
             <div class="weui_mask"></div>
             <div class="weui_dialog">
-                <div class="weui_dialog_hd"><strong class="weui_dialog_title">弹窗标题</strong></div>
-                <div class="weui_dialog_bd">弹窗内容，告知当前页面信息等</div>
+                <div class="weui_dialog_hd"><strong class="weui_dialog_title">兑换成功</strong></div>
+                <div class="weui_dialog_bd">您已成功兑换优惠劵，欢迎下次再来</div>
                 <div class="weui_dialog_ft">
                     <a href="javascript:;" class="weui_btn_dialog primary">确定</a>
                 </div>

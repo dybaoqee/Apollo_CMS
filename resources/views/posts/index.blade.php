@@ -14,24 +14,21 @@ Apollo
 <div class="row">
     <div class="col-xs-12 col-md-8 col-md-offset-2">
 @foreach($posts as $post)
-        <a href="{!! URL::route('blog.posts.show', array('posts' => $post->id)) !!}">
-        <div class="item-card">
-            <div class="item-thumbnail">
-                <img class="img-responsive" src="/upload/{!! $post->image !!}">
-            </div>
-            <div class="item-description">
-                <div class="item-title">
-                    <h1>{!! $post->title !!}</h1>
+        <div class="item-card" style="background-image:url('/upload/{!! $post->image !!}')">
+            <a href="{!! URL::route('blog.posts.show', array('posts' => $post->id)) !!}">
+                <div class="item-description">
+                    <div class="item-title">
+                        <h2>{!! $post->title !!}</h2>
+                    </div>
+                    <div class="item-rooms">
+                        <p>{!! $post->summary !!}</p>
+                    </div>
                 </div>
                 <div class="item-sticker">
                     <h3>{!! $post->promotion !!}</h3>
                 </div>
-                <div class="item-rooms">
-                    <p>{!! $post->summary !!}</p>
-                </div>
-            </div>
+            </a>
         </div>
-        </a>
 @endforeach
 {!! $links !!}
     <!--

@@ -12,20 +12,64 @@ body {
 }
 
 #wrap > .container {
-    padding: 60px 15px;
+    padding: 40px 0px;
 }
 
+.container > .page-header {
+	padding: 0px 15px 0px 15px;
+}
+
+.container > .row {
+	margin-left: 0px;
+	margin-right: 0px;
+}
 
 .item-card {
-	color: #000000;
-	height: 255px;
-	border-radius: 5px;
-	background-color: #ffffff;
-	box-shadow: #666 0px 0px 3px;
+	height: 320px;
+	border: 1px solid #fff;
+	background-color: #36454f;
+	background-image: none;
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: 50%;
+	font-size: 14px;
 }
 
-.item-card h1 {
+.item-card a:hover {
+	background-color: rgba(8,17,18,.3);
+	color: #ecf0f1;
+}
+
+
+@media only screen and (max-width:520px){
+	.item-card{
+		height:280px
+	}
+}
+
+.item-card a {
+	display: block;
+	width: 100%;
+	height: 100%;
+	padding: 40px;
+	text-shadow: 0 0 2px rgba(0,0,0,.6);
+	text-decoration: none;
+	color: #fff;
+	-webkit-transition: background-color .4s;
+	transition: background-color .4s;
+	background-image: -webkit-gradient(linear,left top,left bottom,color-stop(50%,rgba(0,0,0,.3)),to(rgba(0,0,0,.4)));
+	background-image: -webkit-linear-gradient(top,rgba(0,0,0,.3) 50%,rgba(0,0,0,.4));
+	background-image: linear-gradient(180deg,rgba(0,0,0,.3) 50%,rgba(0,0,0,.4));
+	position: relative;
+	text-align: center;
+}
+
+.item-card h2 {
 	font-weight:bold;
+	position: relative;
+	top: 50%;
+	-webkit-transform: translateY(-50%);
+	transform: translateY(-50%);
 }
 
 .item-thumbnail {
@@ -40,31 +84,28 @@ body {
 }
 
 .item-description {
-	margin-left: 30%;
-	height: :100%;
 }
 
 .item-title {
-	margin-top: 5%;
-	margin-left: 10%;
 }
 
 .item-sticker {
-	opacity: 0.6;
-	float: right;
 	background-color: #d03b3b;
-	color: #ffffff;
-	width: 20%;
-	height: 10%;
-	padding-left: 3%;
+	position: absolute;
+	top: 0px;
+	height: 63px;
+	right: 0px;
+	width: 70px;
 }
 
 .item-rooms {
-	margin-left: 10%;
-    margin-top: 15%;
-    margin-right: 20%;
-    font-size: 1em;
-    line-height: 1.5em;
+	display: block;
+	font-family: myriad-pro,Helvetica Neue,Helvetica,Arial,sans-serif;
+	font-weight: 400;
+	font-style: normal;
+	letter-spacing: .3px;
+	font-size: 14px;
+	text-transform: none;
 }
 
 .bs-docs-separator {
@@ -189,4 +230,8 @@ body {
 }
 .carousel-fade .carousel-control {
 	z-index: 2;
+}
+
+.slideshow {
+	width: 100%;
 }

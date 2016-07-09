@@ -1,11 +1,13 @@
 <div class="navbar {!! ($inverse == true) ? 'navbar-inverse' : 'navbar-default' !!} navbar-fixed-top">
     <div class="container-fluid">
         <div class="navbar-header">
+            @if ($bar)
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
+            @endif
             <a class="navbar-brand" href="/">{!! (Request::is('blog/posts') ? $title : '返回首页') !!}</a>
         </div>
         @if ($bar)
